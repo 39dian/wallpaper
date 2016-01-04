@@ -1,0 +1,154 @@
+﻿<!--<ion-refresher pulling-text="下拉来刷新" on-refresh="init()"></ion-refresher>-->
+<div class="bar bar-header bar-assertive item-input-inset">
+    <label class="item-input-wrapper" on-tap="search()">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input disabled type="search" value="点击搜索墙纸">
+    </label>
+    <button class="button button-icon ion-ios-barcode-outline" ng-click="scanbarcode()"></button>
+</div>
+
+<ion-view view-title="home" >
+  <ion-content class="has-header" ng-controller="HomeCtrl">
+
+    <!--图片轮播-->
+  <ion-slide-box auto-play="true" does-continue="true" slide-interval=2000 show-pager="true" delegate-handle="delegateHandler">
+    <ion-slide>
+      <div class="box">
+        <img src="http://www.wallinter.com/imagedata/2015/02/03/600bc3bb-5589-4c30-a1fe-4b1c62132028.jpg" width="100%" height="150px">
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="box">
+        <img src="http://www.wallinter.com/imagedata/2015/01/31/fa4efe38-7058-4627-be2c-f21cad4e2bfa.jpg" width="100%" height="150px">
+      </div>
+    </ion-slide>
+      <ion-slide>
+          <div class="box">
+              <img src=" http://www.wallinter.com/imagedata/2015/02/03/705e4354-bde1-4a12-85a3-270c9f46ad0e.jpg" width="100%" height="150px">
+          </div>
+      </ion-slide>
+  </ion-slide-box>
+
+
+
+    <!-- <div class="wj-focus">
+        <ion-slide-box auto-play="true" does-continue="true">
+          <ion-slide ng-repeat="item in slideshows">
+            <div style="width:100%; height:200px; background:url({{BASEURL + item.image}}); background-size:cover; background-repeat:no-repeat; background-position:center"></div>
+          </ion-slide>
+        </ion-slide-box>
+    </div> -->
+
+    <div class="wj-nav">
+        <div class="row row-no-padding">
+            <!-- <div class="col col-25">
+                <div ng-click="showLogin()" class="item item-icon-top s2">
+                  <i class="icon ion-log-in"></i>
+                  我要登录
+                </div>
+            </div> -->
+            <div class="col col-33">
+                <a href="#/tab/dash/help" class="item item-icon-top s3">
+                    <i class="icon ion-help"></i>
+                    新手指南
+                </a>
+            </div>
+            <div class="col col-33">
+                <a href="#/tab/dash/contact" class="item item-icon-top s1">
+                    <i class="icon ion-ios-telephone"></i>
+                    联系我们
+                </a>
+            </div>
+            <div class="col col-33">
+                <a href="#" class="item item-icon-top s4">
+                    <i class="icon ion-chatboxes"></i>
+                    在线客服
+                </a>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <!-- <div class="col col-25">
+                <a href="#" ng-click="showRegister()" class="item item-icon-top s1">
+                  <i class="icon ion-person-add"></i>
+                  新用户注册
+                </a>
+            </div> -->
+            <div class="col col-33">
+                <a href="#/tab/dash/recommend" class="item item-icon-top s4">
+                    <i class="icon ion-person-stalker"></i>
+                    推荐注册
+                </a>
+            </div>
+            <div class="col col-33">
+                <a href="#/tab/dash/order" class="item item-icon-top s2">
+                    <i class="icon ion-clipboard"></i>
+                    实时订单
+                </a>
+            </div>
+            <div class="col col-33">
+                <a href="#/tab/dash/notice" class="item item-icon-top s3">
+                    <i class="icon ion-speakerphone"></i>
+                    实时通告
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="wj-tj">
+        <a class="item item-divider item-icon-right" href="#/tab/dash/commend/特别推荐">
+            <i class="icon ion-ios-arrow-right"></i>特别推荐
+        </a>
+        <div class="row">
+            <div class="col col-33" ng-repeat="item in goodsCommends">
+                <a class="item item-image" href="#/tab/dash/goods/{{item.goods.id}}">
+                    <img ng-src="{{BASEURL + item.goods.thumb_image}}">
+                    <h2>{{item.goods.title}}</h2>
+                    <p class="price">￥{{item.goods.price}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <div class="wj-tools clearfix">
+        <a class="item" href="#/tab/dash/commend/最新供应"><img src="img/wall/t1.png"></a>
+        <a class="item" href="#/tab/dash/commend/优惠最多"><img src="img/wall/t2.png"></a>
+        <a class="item" href="#/tab/dash/commend/尾货急甩"><img src="img/wall/t3.png"></a>
+        <a class="item" href="#/tab/want"><img src="img/wall/t4.png"></a>
+    </div>
+
+    <div class="list wj-list">
+        <a class="item item-divider item-icon-right">
+            热门墙纸
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+        <a class="item item-thumbnail-left  item-icon-right" href="#/tab/dash/goods/{{item.goods.id}}" ng-repeat="paper in hotPaperList">
+            <img ng-src="{{BASEURL + paper.smallPic}}">
+            <h3>{{paper.newModel}}</h3>
+            <p style="font-size:12px;">尺寸：{{paper.standard}}</p>
+            <p style="font-size:14px;color:red;line-height:150%">￥{{paper.wholesalerPrice}}</p>
+        </a>
+        <a class="item item-divider item-icon-right">
+            热门样本
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+        <a class="item item-thumbnail-left  item-icon-right" href="#/tab/dash/goods/{{item.goods.id}}" ng-repeat="item in redWine">
+            <img ng-src="{{BASEURL + item.goods.thumb_image}}">
+            <h3>{{item.goods.title}}</h3>
+            <p style="font-size:12px;">库存：{{item.goods.stock}}件&nbsp;&nbsp;{{item.goods.min_quantity}}件起售</p>
+            <p style="font-size:14px;color:red;line-height:150%">￥{{item.goods.price}}</p>
+        </a>
+        <a class="item item-divider item-icon-right">
+            新闻资讯
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+        <a class="item item-thumbnail-left  item-icon-right" href="#/tab/dash/goods/{{item.goods.id}}" ng-repeat="item in beerWine">
+            <img ng-src="{{BASEURL + item.goods.thumb_image}}">
+            <h3>{{item.goods.title}}</h3>
+            <p style="font-size:12px;">库存：{{item.goods.stock}}件&nbsp;&nbsp;{{item.goods.min_quantity}}件起售</p>
+            <p style="font-size:14px;color:red;line-height:150%">￥{{item.goods.price}}</p>
+        </a>
+    </div>
+</ion-content>
+
+</ion-view>

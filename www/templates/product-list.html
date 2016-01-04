@@ -1,0 +1,32 @@
+<div class="bar bar-header bar-assertive item-input-inset">
+  <label class="item-input-wrapper" on-tap="search()">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input disabled  type="search" value="点击搜索墙纸">
+  </label>
+  <button class="button button-icon ion-ios-barcode-outline" ng-click="scanbarcode()"></button>
+</div>
+<ion-view view-title="列表">
+  <ion-content class="has-header">
+    <ion-refresher
+            pulling-text="下拉"
+            refreshing-text="刷新中..."
+            spinner="ios"
+            on-refresh="doRefreshProduct()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="product in productList" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <img ng-src="{{BASEURL+product.smallPic}}" >
+        <h2 style="padding-top:5px">{{product.newModel}}</h2>
+        <p style="font-size:12px;padding-top:5px">尺寸：{{product.standard}}</p>
+        <p style="color:#ff0000;padding-top:5px">￥{{product.wholesalerPrice}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMoreProduct()" distance="1%" ng-if="ifLoadMore">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

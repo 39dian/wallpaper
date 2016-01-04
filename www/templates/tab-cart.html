@@ -1,0 +1,35 @@
+<ion-view view-title="购物车">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-clear" ng-click="data.showDelete = !data.showDelete">编辑</button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list show-delete="data.showDelete">
+            <div class="list" ng-show="items.length===0">
+                <a class="item">
+                    购物车空空如也！
+                </a>
+            </div>  
+            <ion-item ng-repeat="(index, item) in items" item="item" class="item-thumbnail-left item-remove-animate">
+                <img ng-src="{{BASEURL + item.image}}">
+                <h2>{{item.name}}</h2>
+                <p>单价：{{item.price | currency : '￥'}}</p>
+                <div class="cart-spiner" style="margin-left:0">
+                    <button class="button button-small icon ion-minus button-left" ng-click="quantityDown(index)"></button>
+                    <input type="number" min="{{item.min_quantity}}" readonly="true" max="{{item.stock}}" ng-model="item.quantity">
+                    <button class="button button-small icon ion-plus button-right" ng-click="quantityUp(index)"></button>
+                </div>
+                <ion-delete-button class="ion-minus-circled" ng-click="delete(index)">
+                </ion-delete-button>
+                <ion-option-button class="button-assertive" ng-click="delete(index)">
+                    删除
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-dark">
+        <h1 class="title" style="text-align:left; font-size:1em;">共{{data.quantity}}件商品，总计 {{data.amount | currency : '￥'}} </h1>
+        <div class="buttons">
+            <button class="button button-stable" ng-click="next()">去下单</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>
